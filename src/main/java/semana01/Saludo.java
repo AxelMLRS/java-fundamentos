@@ -18,15 +18,9 @@ public class Saludo {
         do {
             System.out.println("Ingrese su edad: ");
             String entradaEdad = scan.nextLine();
-
-            if (entradaEdad.isBlank()){
-                System.out.println("Ingrese una edad válida (no deje espacios en blanco).");
-                edad = 0;
-                continue;
-            }
             try{
                 edad = Integer.parseInt(entradaEdad.trim());
-                if (edad <= 0){
+                if (edad <= 0 || edad > 200){
                     System.out.println("Ingrese una edad válida.");
                 }
             }catch (NumberFormatException e){
@@ -34,7 +28,7 @@ public class Saludo {
                 edad = 0;
             }
 
-        }while (edad <= 0);
+        }while (edad <= 0 || edad > 200);
 
         System.out.println("Hola " + nombre + ", tienes " + edad + " años de edad.");
         scan.close();
