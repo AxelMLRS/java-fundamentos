@@ -13,18 +13,18 @@ public class SumaHastaN {
             try{
                 n = Integer.parseInt(entradaN.trim());
                 if (n < 0){
-                        System.out.println("Ingrese un número entero positivo.");
+                        System.out.println("Ingrese un número entero no negativo."); //El cero no es estrictamente positivo, por lo que usamos "no negativo".
                 } else {
                     esValido = true;
                 }
 
             } catch (NumberFormatException e){
-                System.out.println("Debe ingresar un número entero. Intente nuevamente.");
+                System.out.println("Debe ingresar un número entero válido.");
             }
         } while (!esValido);
 
-        int suma = 0;
-        for (int i = 0; i <= n; i++){
+        long suma = 0L;
+        for (int i = 1; i <= n; i++){
             suma += i;
         }
 
