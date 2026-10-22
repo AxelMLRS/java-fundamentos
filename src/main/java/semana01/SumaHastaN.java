@@ -24,7 +24,7 @@ public class SumaHastaN {
         } while (!esValido);
 
         long suma = 0L;
-        for (int i = 1; i <= n; i++){
+        for (long i = 1; i <= n; i++){
             suma += i;
         }
 
