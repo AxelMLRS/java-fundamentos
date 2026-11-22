@@ -1,5 +1,4 @@
 package semana01;
-
 import java.util.Scanner;
 
 public class Saludo {
@@ -25,9 +24,7 @@ public class Saludo {
                 }
             }catch (NumberFormatException e){
                 System.out.println("Ingrese una edad válida (ingrese solo números enteros).");
-                edad = 0;
             }
-
         }while (edad <= 0 || edad > 200);
 
         System.out.println("Hola " + nombre + ", tienes " + edad + " años de edad.");

@@ -1,27 +1,42 @@
 package semana02;
 
 public class MayorYMenor {
-    public static int[] mayorYMenor(int[] numeros){
-        if (numeros == null || numeros.length == 0){
-            throw new IllegalArgumentException("El arreglo no puede ser null nie star vacío.");// Si el arreglo es null o está vacío, lanzamos una excepción porque no existen elementos para determinar el mayor y el menor.
+    // Devuelve un arreglo donde la posición 0 contiene el mayor valor
+    // y la posición 1 contiene el menor valor.
+    public static int[] mayorYMenor(int[] numeros) {
+
+        // Si el arreglo es null o está vacío, lanzamos una excepción
+        // porque no existen elementos para determinar el mayor y el menor.
+        if (numeros == null || numeros.length == 0) {
+            throw new IllegalArgumentException("El arreglo no puede ser null ni estar vacío.");
         }
 
-        int menor = numeros[0];
+        // Inicializamos ambas variables con el primer elemento del arreglo.
         int mayor = numeros[0];
+        int menor = numeros[0];
 
-        for (int i = 1; i < numeros.length; i++){
-            if (numeros[i] > mayor){
+        // Recorremos el arreglo desde la segunda posición.
+        for (int i = 1; i < numeros.length; i++) {
+
+            // Si encontramos un número mayor, actualizamos mayor.
+            if (numeros[i] > mayor) {
                 mayor = numeros[i];
             }
 
-            if (numeros[i] < menor){
+            // Si encontramos un número menor, actualizamos menor.
+            if (numeros[i] < menor) {
                 menor = numeros[i];
             }
         }
+
+        // Elegimos un arreglo de dos posiciones porque permite devolver ambos valores
+        // sin crear una clase adicional. Su inconveniente es que las posiciones no
+        // tienen nombres, por lo que quien use el método debe recordar su orden.
         return new int[]{mayor, menor};
     }
 
     public static void main(String[] args) {
+
         // Caso 1: números positivos.
         // Se espera: Mayor = 15, Menor = 3.
         int[] resultado1 = mayorYMenor(new int[]{8, 3, 15, 10});
@@ -56,17 +71,18 @@ public class MayorYMenor {
         // Se espera: IllegalArgumentException.
         try {
             mayorYMenor(new int[]{});
+            System.out.println("Caso 7: FALLÓ. No se lanzó la excepción esperada.");
         } catch (IllegalArgumentException e) {
-            System.out.println("Caso 7: Se lanzó una excepción por arreglo vacío.");
+            System.out.println("Caso 7: PASÓ. Se lanzó la excepción esperada por arreglo vacío.");
         }
 
         // Caso 8: arreglo null.
         // Se espera: IllegalArgumentException.
         try {
             mayorYMenor(null);
+            System.out.println("Caso 8: FALLÓ. No se lanzó la excepción esperada.");
         } catch (IllegalArgumentException e) {
-            System.out.println("Caso 8: Se lanzó una excepción por arreglo null.");
+            System.out.println("Caso 8: PASÓ. Se lanzó la excepción esperada por arreglo null.");
         }
     }
-
 }
