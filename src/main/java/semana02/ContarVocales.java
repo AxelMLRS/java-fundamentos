@@ -1,43 +1,43 @@
-package semana02;
 
 public class ContarVocales {
+
     public static int contarVocales(String texto) {
 
-        // Si el texto es null, devolvemos 0 porque no hay caracteres que contar.
-        // Elegimos devolver 0 en lugar de lanzar una excepción para que el método
-        // pueda responder directamente cuántas vocales contiene el texto recibido.
+        // Si el texto es null, devolvemos 0 porque un texto inexistente
+        // no contiene vocales que contar. Elegimos 0 en lugar de una excepción
+        // porque es una respuesta válida para el propósito de este método.
         if (texto == null) {
-            return 0;
-        }
-
-        // Si el texto está vacío, devolvemos 0 porque no contiene vocales.
-        if (texto.isEmpty()) {
             return 0;
         }
 
         int contador = 0;
 
-        // Convertimos el texto a minúsculas para contar también las vocales
-        // que originalmente estaban escritas en mayúsculas.
-        texto = texto.toLowerCase();
-
         // Recorremos cada carácter del texto.
         for (int i = 0; i < texto.length(); i++) {
 
-            char letra = texto.charAt(i);
-
-            // Contamos las vocales normales, las vocales con tilde y la ü.
-            // Consideramos la ü como vocal porque representa una variante de la u.
-            if (letra == 'a' || letra == 'e' || letra == 'i' ||
-                    letra == 'o' || letra == 'u' ||
-                    letra == 'á' || letra == 'é' || letra == 'í' ||
-                    letra == 'ó' || letra == 'ú' || letra == 'ü') {
-
+            // Si el carácter es una vocal, incrementamos el contador.
+            if (esVocal(texto.charAt(i))) {
                 contador++;
             }
         }
 
         return contador;
+    }
+
+    // Determina si un carácter es una vocal.
+    private static boolean esVocal(char letra) {
+
+        // Convertimos el carácter a minúscula para reconocer también
+        // las vocales que originalmente estaban en mayúscula.
+        letra = Character.toLowerCase(letra);
+
+        // Consideramos las vocales con tilde y la ü como vocales.
+        // No contemplamos otras variantes Unicode, como à o ï,
+        // porque nos limitamos a las vocales utilizadas en español.
+        return letra == 'a' || letra == 'e' || letra == 'i' ||
+                letra == 'o' || letra == 'u' || letra == 'á' ||
+                letra == 'é' || letra == 'í' || letra == 'ó' ||
+                letra == 'ú' || letra == 'ü';
     }
 
     public static void main(String[] args) {
@@ -51,15 +51,15 @@ public class ContarVocales {
         System.out.println("Caso 2: " + contarVocales("aeiou"));
 
         // Caso 3: texto con mayúsculas y minúsculas.
-        // Se espera: 5.
+        // Se espera: 4.
         System.out.println("Caso 3: " + contarVocales("HoLa MuNdO"));
 
         // Caso 4: texto con vocales con tilde.
         // Se espera: 5.
         System.out.println("Caso 4: " + contarVocales("áéíóú"));
 
-        // Caso 5: texto con vocales normales, tildes y ü.
-        // Se espera: 6.
+        // Caso 5: texto con vocales normales y ü.
+        // Se espera: 4.
         System.out.println("Caso 5: " + contarVocales("pingüino"));
 
         // Caso 6: texto vacío.
@@ -73,7 +73,9 @@ public class ContarVocales {
         // Caso 8: texto con consonantes, números y símbolos.
         // Se espera: 2.
         System.out.println("Caso 8: " + contarVocales("Java 123!"));
+
+        // Caso 9: vocales con tilde en mayúscula.
+        // Se espera: 3.
+        System.out.println("Caso 9: " + contarVocales("ÁÉÍ"));
     }
 }
-
-
