@@ -2,7 +2,10 @@ package semana02;
 
 public class EsPalindromo {
     public static boolean esPalindromo(String texto){
-        if (texto == null){
+        // Si el texto es null, devolvemos false porque no cumple la condición de ser un palíndromo.
+        // Elegimos false en lugar de lanzar una excepción para que el método responda directamente
+        // si la entrada puede considerarse un palíndromo, sin trasladar ese manejo a quien lo llama.
+        if (texto == null) {
             return false;
         }
 
